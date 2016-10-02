@@ -27,7 +27,11 @@ class RtmEventHandler(object):
             # you joined a channel
             #self.msg_writer.write_help_message(event['channel'])
         elif event_type == 'team_join':
-            # Someone joins the team
+            # PM someone who joins the team.
+            username = self.msg_writer["user"]["name"]
+            print(username)
+            
+            
             self.msg_writer.write_help_message(event['channel'])
         else:
             pass
