@@ -17,16 +17,16 @@ class RtmEventHandler(object):
 
     def _handle_by_type(self, event_type, event):
         # See https://api.slack.com/rtm for a full list of events
-        #if event_type == 'error':
+        if event_type == 'error':
             # error
-            #self.msg_writer.write_error(event['channel'], json.dumps(event))
-        #elif event_type == 'message':
+            self.msg_writer.write_error(event['channel'], json.dumps(event))
+        elif event_type == 'message':
             # message was sent to channel
-            #self._handle_message(event)
-        #elif event_type == 'channel_joined':
+            self._handle_message(event)
+        elif event_type == 'channel_joined':
             # you joined a channel
-            #self.msg_writer.write_help_message(event['channel'])
-        if event_type == 'team_join':
+            self.msg_writer.write_help_message(event['channel'])
+        elif event_type == 'team_join':
             # PM someone who joins the team.
             user_id = event.get('user')
             if user_id is not None:
